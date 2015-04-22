@@ -1,0 +1,24 @@
+{
+  "name": "epublook",
+  "version": "0.0.0",
+  "description": "Epub cli tool and library to look inside epub files",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/*.test.js"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "epublook": "./bin/epublook"
+  },
+  "author": "Mustafa Altun <gmail@mustafaaltun.com>",
+  "license": "MIT",
+  "dependencies": {
+    "epub-ocf": "0.0.0",
+    "xmldom": "^0.1.19",
+    "xpath": "0.0.9"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "should": "^5.2.0"
+  }
+}
