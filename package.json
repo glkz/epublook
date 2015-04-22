@@ -13,6 +13,7 @@
   "author": "Mustafa Altun <gmail@mustafaaltun.com>",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.6.0",
     "epub-ocf": "0.0.0",
     "xmldom": "^0.1.19",
     "xpath": "0.0.9"

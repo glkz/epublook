@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+var ocf = require('epub-ocf');
+
+var program = require('commander');
+var fs = require('fs');
+var assert = require('assert');
+
+program.version('0.0.0');
+
+program
+  .command('read <epub> <entry> [output]')
+  .description('read entry')
+  .action(function(epub, entry, output, options) {
+    var container = ocf(epub);
+    var stream = container.createReadStream(entry);
+
+    if (output) {
+      console.log('%s written to %s', entry, output);
+      stream.pipe(fs.createWriteStream(output));
+    } else {
+      stream.pipe(process.stdout);
+    }
+  });
+
+program
+  .command('rootfiles <epub>')
+  .description('root files')
+  .action(function(epub, options) {
+    var container = ocf(epub);
+    container.rootfiles(function(err, files) {
+      console.log(files.join('\n'));
+    });
+  });
+
+/*
+@todo
+
+program
+  .command('meta <epub> <element>');
+
+program
+  .command('toc <epub>');
+
+program
+  .command('cover <epub>');
+
+program
+  .command('meta <epub>');
+
+program
+  .command('manifest <epub>');
+
+program
+  .command('extract-html <epub>');
+
+program
+  .command('extract-txt <epub>');
+*/
+
+program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
